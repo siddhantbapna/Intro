@@ -62,5 +62,19 @@ callmaqo ?
         });
       }
     </script>
+    <script>
+        if (!GoogleSignIn.hasPermissions(
+                GoogleSignIn.getLastSignedInAccount(getActivity()),
+                Drive.SCOPE_APPFOLDER)) {
+            GoogleSignIn.requestPermissions(
+                    MyExampleActivity.this,
+                    RC_REQUEST_PERMISSION_SUCCESS_CONTINUE_FILE_CREATION,
+                    GoogleSignIn.getLastSignedInAccount(getActivity()),
+                    Drive.SCOPE_APPFOLDER);
+        } else {
+            saveToDriveAppFolder();
+        }
+    
+    </script>
 </body>
 </html>
