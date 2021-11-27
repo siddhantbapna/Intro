@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="6tHs7V8r8UHp5Cao7sFQrG5T7wxaG322h-i_fsowNuc" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <style>
     .content {
       position: absolute;
@@ -40,42 +40,28 @@ callmaqo ?
     unique name na !?
    
    </pre>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div id="my-signin2"></div>
     </div>
-    <script>
-        function onSignIn(googleUser) {
-            if (!googleUser.hasPermissions(
-                    googleUser.getLastSignedInAccount(getActivity()),
-                    Drive.SCOPE_APPFOLDER)) {
-                googleUser.requestPermissions(
-                        MyExampleActivity.this,
-                        RC_REQUEST_PERMISSION_SUCCESS_CONTINUE_FILE_CREATION,
-                        googleUser.getLastSignedInAccount(getActivity()),
-                        Drive.SCOPE_APPFOLDER);
-            } else {
-                saveToDriveAppFolder();
-            }
-          console.log(googleUser)
-          var profile = googleUser.getBasicProfile();
-          console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-          console.log('Name: ' + profile.getName());
-          console.log('Image URL: ' + profile.getImageUrl());
-          console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
-
-    </script>
-    <a href="#" onclick="signOut();">Sign out</a>
-    <script>
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-         console.log('User signed out.');
-        });
-      }
-    </script>
-    <script>
-        
-    
-    </script>
+  
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </body>
 </html>
