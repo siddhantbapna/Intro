@@ -56,14 +56,10 @@ callmaqo ?
     <a href="#" onclick="signOut();">Sign out</a>
     <script>
       function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-      }
-    </script>
-    <script>
-        if (!GoogleSignIn.hasPermissions(
+        //var auth2 = gapi.auth2.getAuthInstance();
+        //auth2.signOut().then(function () {
+         //console.log('User signed out.');
+          if (!GoogleSignIn.hasPermissions(
                 GoogleSignIn.getLastSignedInAccount(getActivity()),
                 Drive.SCOPE_APPFOLDER)) {
             GoogleSignIn.requestPermissions(
@@ -74,6 +70,11 @@ callmaqo ?
         } else {
             saveToDriveAppFolder();
         }
+        });
+      }
+    </script>
+    <script>
+        
     
     </script>
 </body>
