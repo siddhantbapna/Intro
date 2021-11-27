@@ -15,6 +15,17 @@
       });
       attachSignin(document.getElementById('customBtn'));
     });
+    const option = new gapi.auth2.SigninOptionsBuilder();
+    option.setScope('email https://www.googleapis.com/auth/drive');
+
+    googleUser = auth2.currentUser.get();
+    googleUser.grant(options).then(
+        function(success){
+          console.log(JSON.stringify({message: "success", value: success}));
+        },
+        function(fail){
+          alert(JSON.stringify({message: "fail", value: fail}));
+        });
   };
 
   function attachSignin(element) {
