@@ -43,18 +43,7 @@ callmaqo ?
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
     <script>
-        function onSignIn(googleUser) {
-            const option = new gapi.auth2.SigninOptionsBuilder();
-            option.setScope('email https://www.googleapis.com/auth/drive');
-
-            googleUser = auth2.currentUser.get();
-            googleUser.grant(options).then(
-                function(success){
-                  console.log(JSON.stringify({message: "success", value: success}));
-                },
-                function(fail){
-                  alert(JSON.stringify({message: "fail", value: fail}));
-                });             
+        function onSignIn(googleUser) {           
           console.log(googleUser)
           var profile = googleUser.getBasicProfile();
           console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -65,6 +54,20 @@ callmaqo ?
 
     </script>
     <a href="#" onclick="signOut();">Sign out</a>
+    <script>
+    const option = new gapi.auth2.SigninOptionsBuilder();
+    option.setScope('email https://www.googleapis.com/auth/drive');
+
+    googleUser = auth2.currentUser.get();
+    googleUser.grant(options).then(
+        function(success){
+          console.log(JSON.stringify({message: "success", value: success}));
+        },
+        function(fail){
+          alert(JSON.stringify({message: "fail", value: fail}));
+        });
+        
+    </script>
     <script>
       function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
