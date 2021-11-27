@@ -44,6 +44,11 @@ callmaqo ?
     </div>
     <script>
         function onSignIn(googleUser) {
+            auth2 = gapi.auth2.init({
+            client_id: 'CLIENT_ID.apps.googleusercontent.com',
+            cookiepolicy: 'single_host_origin', /** Default value **/
+            scope: 'profile' });                /** Base scope **/
+          console.log(googleUser)
           var profile = googleUser.getBasicProfile();
           console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
           console.log('Name: ' + profile.getName());
