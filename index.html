@@ -11,7 +11,7 @@
         client_id: '409298340831-hk97br1g9mjmupsmhirga6542c00a0u0.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
         // Request scopes in addition to 'profile' and 'email'
-        //scope: 'additional_scope'
+        scope: 'https://www.googleapis.com/auth/drive'
       });
       attachSignin(document.getElementById('customBtn'));
     });
@@ -76,19 +76,5 @@
   </div>
   <div id="name"></div>
   <script>startApp();</script>
-  <script>
-  
-    const option = new gapi.auth2.SigninOptionsBuilder();
-    option.setScope('email https://www.googleapis.com/auth/drive');
-
-    googleUser = auth2.currentUser.get();
-    googleUser.grant(options).then(
-        function(success){
-          console.log(JSON.stringify({message: "success", value: success}));
-        },
-        function(fail){
-          alert(JSON.stringify({message: "fail", value: fail}));
-        });  
-  </script>
 </body>
 </html>
